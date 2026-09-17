@@ -25,7 +25,7 @@ export const DATABASE = {
       title: "Barriguda Web TV",
       artist: "Barriguda Web TV",
       year: 2026,
-      cover: "assets/covers/barriguda-web-tv.svg",
+      cover: "assets/covers/cover.png",
       tracks: [
         {
           id: "bwtv-fundo",
