@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d0f12">
+  <title>Pulse — Music Player</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><span class="brand-mark">P</span><span>Pulse</span></div>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <button class="nav-item active" data-route="home">⌂ <span>Início</span></button>
+        <button class="nav-item" data-route="albums">▣ <span>Álbuns</span></button>
+        <button class="nav-item" data-route="singles">♪ <span>Singles</span></button>
+        <button class="nav-item" data-route="playlists">☷ <span>Playlists</span></button>
+      </nav>
+      <div class="library-head"><span>Sua biblioteca</span><button id="newPlaylistBtn" title="Nova playlist">＋</button></div>
+      <div id="playlistNav" class="playlist-nav"></div>
+      <div class="sidebar-footer"><button class="nav-item" data-route="settings">⚙ <span>Configurações</span></button></div>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <button id="menuBtn" class="icon-btn mobile-only" aria-label="Abrir menu">☰</button>
+        <div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="O que você quer ouvir?"></div>
+        <div class="top-actions"><button id="clearSearch" class="ghost-btn">Limpar</button></div>
+      </header>
+
+      <section id="view" class="view" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <footer class="player">
+    <div class="now-playing">
+      <img id="playerCover" src="assets/covers/default.svg" alt="">
+      <div class="track-meta"><strong id="playerTitle">Nenhuma música</strong><span id="playerArtist">Escolha uma faixa</span></div>
+    </div>
+    <div class="player-center">
+      <div class="controls">
+        <button id="shuffleBtn" class="control-btn" title="Aleatório">⤨</button>
+        <button id="prevBtn" class="control-btn" title="Anterior">◀</button>
+        <button id="playBtn" class="play-btn" title="Reproduzir">▶</button>
+        <button id="nextBtn" class="control-btn" title="Próxima">▶</button>
+        <button id="repeatBtn" class="control-btn" title="Repetir">↻</button>
+      </div>
+      <div class="progress-row">
+        <span id="currentTime">0:00</span>
+        <input id="progress" type="range" min="0" max="100" value="0" aria-label="Progresso">
+        <span id="duration">0:00</span>
+      </div>
+    </div>
+    <div class="player-right">
+      <span>🔊</span><input id="volume" type="range" min="0" max="1" step=".01" value=".8" aria-label="Volume">
+    </div>
+  </footer>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <div class="modal-head"><h2 id="modalTitle">Nova playlist</h2><button id="closeModal" class="icon-btn">×</button></div>
+      <input id="playlistName" class="text-input" placeholder="Nome da playlist" maxlength="40">
+      <div class="modal-actions"><button id="cancelModal" class="ghost-btn">Cancelar</button><button id="savePlaylist" class="primary-btn">Criar</button></div>
+    </div>
+  </div>
+
+  <audio id="audio"></audio>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
