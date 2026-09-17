@@ -83,7 +83,7 @@ export const DATABASE = {
       title: "Vozes Regionais",
       artist: "Barriguda Web TV",
       year: 2026,
-      cover: "assets/covers/vozes-regionais.svg",
+      cover: "assets/covers/cover.png",
       tracks: [
         {
           id: "vozes-regionais-1",
@@ -174,7 +174,7 @@ export const DATABASE = {
       title: "Vozes Regionais",
       artist: "Barriguda Web TV",
       year: 2026,
-      cover: "assets/covers/vozes-regionais.svg",
+      cover: "assets/covers/cover.png",
       tracks: [
         {
           id: "vozes-regionais-1",
