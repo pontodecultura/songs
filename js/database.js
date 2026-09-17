@@ -1,49 +1,114 @@
-// Catálogo estático. Troque as URLs pelos arquivos do seu GitHub Pages/raw.
+// Catálogo estático da Barriguda Web TV.
+// Os MP3 abaixo estão hospedados no repositório público:
+// https://github.com/pontodecultura/songs
+//
+// Para reprodução no navegador, usamos URLs RAW do GitHub,
+// e não as URLs /blob/ da página HTML do GitHub.
+
+const RAW_AUDIO_BASE =
+  "https://raw.githubusercontent.com/pontodecultura/songs/pontodecultura.github.io/assets/audio/";
+
+const audio = (filename) =>
+  RAW_AUDIO_BASE + encodeURIComponent(filename).replace(/%2F/g, "/");
+
 export const DATABASE = {
   app: {
-    name: "Pulse",
-    version: "1.0.0",
-    githubBase: "", // Ex.: https://SEU_USUARIO.github.io/SEU_REPOSITORIO/
+    name: "Barriguda Music",
+    version: "1.1.0",
+    githubBase: "https://pontodecultura.github.io/songs/",
     defaultVolume: 0.8
   },
+
   albums: [
     {
-      id: "album-nova",
-      title: "Nova Frequência",
-      artist: "Aurora Lab",
+      id: "album-barriguda",
+      title: "Barriguda Web TV",
+      artist: "Barriguda Web TV",
       year: 2026,
-      cover: "assets/covers/demo-1.svg",
+      cover: "assets/covers/barriguda-web-tv.svg",
       tracks: [
-        { id: "nova-01", title: "Horizonte", duration: "3:42", audio: "assets/audio/horizonte.mp3" },
-        { id: "nova-02", title: "Sinais", duration: "4:05", audio: "assets/audio/sinais.mp3" },
-        { id: "nova-03", title: "Depois da Chuva", duration: "3:18", audio: "assets/audio/depois-da-chuva.mp3" }
+        {
+          id: "bwtv-fundo",
+          title: "Barriguda Web TV [Instrumental] - Fundo",
+          artist: "Barriguda Web TV",
+          duration: "",
+          audio: audio("Barriguda Web TV [Instrumental] - Fundo.mp3")
+        },
+        {
+          id: "bwtv-instrumental",
+          title: "Barriguda Web TV [Instrumental]",
+          artist: "Barriguda Web TV",
+          duration: "",
+          audio: audio("Barriguda Web TV [Instrumental].mp3")
+        },
+        {
+          id: "cultura-brasileira",
+          title: "Cultura Brasileira",
+          artist: "Barriguda Web TV",
+          duration: "",
+          audio: audio("Cultura Brasileira.mp3")
+        },
+        {
+          id: "equipe-barriguda-1",
+          title: "Equipe da Barriguda (1)",
+          artist: "Barriguda Web TV",
+          duration: "",
+          audio: audio("Equipe da Barriguda (1).mp3")
+        },
+        {
+          id: "equipe-barriguda",
+          title: "Equipe da Barriguda",
+          artist: "Barriguda Web TV",
+          duration: "",
+          audio: audio("Equipe da Barriguda.mp3")
+        },
+        {
+          id: "lenda-brasil",
+          title: "Lenda do Brasil",
+          artist: "Barriguda Web TV",
+          duration: "",
+          audio: audio("Lenda do Brasil.mp3")
+        },
+        {
+          id: "uniao-faz-forca",
+          title: "União faz a força (Secretaria de Educação)",
+          artist: "Secretaria de Educação",
+          duration: "",
+          audio: audio("União faz a força (Secretaria de Educação).mp3")
+        }
       ]
     },
     {
-      id: "album-echo",
-      title: "Echoes",
-      artist: "Neon Fields",
-      year: 2025,
-      cover: "assets/covers/demo-2.svg",
-      tracks: [
-        { id: "echo-01", title: "Blue Signal", duration: "3:30", audio: "assets/audio/blue-signal.mp3" },
-        { id: "echo-02", title: "Static Love", duration: "3:57", audio: "assets/audio/static-love.mp3" }
-      ]
-    },
-    {
-      id: "album-orbit",
-      title: "Orbit",
-      artist: "Luna Code",
+      id: "album-vozes-regionais",
+      title: "Vozes Regionais",
+      artist: "Barriguda Web TV",
       year: 2026,
-      cover: "assets/covers/demo-3.svg",
+      cover: "assets/covers/vozes-regionais.svg",
       tracks: [
-        { id: "orbit-01", title: "Perigeu", duration: "4:12", audio: "assets/audio/perigeu.mp3" },
-        { id: "orbit-02", title: "Apogeu", duration: "3:51", audio: "assets/audio/apogeu.mp3" }
+        {
+          id: "vozes-regionais-1",
+          title: "Vozes Regionais (Jingle) (1)",
+          artist: "Barriguda Web TV",
+          duration: "",
+          audio: audio("Vozes Regionais (Jingle) (1).mp3")
+        },
+        {
+          id: "vozes-regionais-2",
+          title: "Vozes Regionais (Jingle) (2)",
+          artist: "Barriguda Web TV",
+          duration: "",
+          audio: audio("Vozes Regionais (Jingle) (2).mp3")
+        },
+        {
+          id: "vozes-regionais",
+          title: "Vozes Regionais (Jingle)",
+          artist: "Barriguda Web TV",
+          duration: "",
+          audio: audio("Vozes Regionais (Jingle).mp3")
+        }
       ]
     }
   ],
-  singles: [
-    { id: "single-01", title: "Linha do Tempo", artist: "Aurora Lab", year: 2026, cover: "assets/covers/demo-1.svg", audio: "assets/audio/linha-do-tempo.mp3", duration: "3:36" },
-    { id: "single-02", title: "Afterglow", artist: "Neon Fields", year: 2026, cover: "assets/covers/demo-2.svg", audio: "assets/audio/afterglow.mp3", duration: "3:44" }
-  ]
+
+  singles: []
 };
