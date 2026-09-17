@@ -1,0 +1,21 @@
+export class AppView {
+  constructor(root) { this.root = root; }
+  renderHome(albums, recentTracks, favorites, library) {
+    this.root.innerHTML = `
+      <div class="hero"><div><span class="eyebrow">PLAYER ESTÁTICO</span><h1>Sua música.<br><em>Seu ritmo.</em></h1><p>Um player inspirado em serviços de streaming, executando arquivos estáticos hospedados no seu próprio repositório.</p></div></div>
+      <section><div class="section-head"><h2>Álbuns</h2><button class="text-btn" data-route="albums">Ver tudo</button></div><div class="card-grid">${albums.map(this.albumCard).join("")}</div></section>
+      ${recentTracks.length ? `<section><div class="section-head"><h2>Ouvidos recentemente</h2></div><div class="track-list">${recentTracks.map(t=>this.trackRow(t, favorites)).join("")}</div></section>` : ""}
+      <section><div class="section-head"><h2>Suas playlists</h2></div><div class="playlist-grid">${library.playlists.length ? library.playlists.map(p=>`<button class="playlist-card" data-playlist="${p.id}"><span>♫</span><strong>${this.esc(p.name)}</strong><small>${p.trackIds.length} faixa(s)</small></button>`).join("") : `<div class="empty">Crie sua primeira playlist usando o botão ＋ na biblioteca.</div>`}</div></section>`;
+  }
+  renderAlbums(albums) { this.page("Álbuns", `<div class="card-grid">${albums.map(this.albumCard).join("")}</div>`); }
+  renderSingles(singles, favorites) { this.page("Singles", `<div class="track-list">${singles.map(s=>this.trackRow(s,favorites,true)).join("")}</div>`); }
+  renderPlaylist(p, tracks, favorites) {
+    this.page(p.name, `<div class="playlist-header"><div class="playlist-icon">♫</div><div><span>PLAYLIST</span><h1>${this.esc(p.name)}</h1><p>${tracks.length} faixa(s)</p></div><button class="primary-btn" data-playlist-play="${p.id}">▶ Reproduzir</button></div><div class="track-list">${tracks.length ? tracks.map(t=>this.trackRow(t,favorites)).join("") : `<div class="empty">Playlist vazia. Adicione faixas pelo menu ⋯.</div>`}</div>`);
+  }
+  renderPlaylists(playlists) { this.page("Playlists", `<div class="playlist-grid">${playlists.map(p=>`<button class="playlist-card" data-playlist="${p.id}"><span>♫</span><strong>${this.esc(p.name)}</strong><small>${p.trackIds.length} faixa(s)</small></button>`).join("") || `<div class="empty">Nenhuma playlist criada.</div>`}</div>`); }
+  renderSettings(app) { this.page("Configurações", `<div class="settings-card"><h2>Banco estático</h2><p>O catálogo é definido em <code>js/database.js</code>. Os arquivos de áudio e capas podem estar no mesmo repositório ou em URLs estáticas.</p><label>Base do GitHub Pages<input class="text-input" id="githubBase" value="${this.esc(app.githubBase || "")}" placeholder="https://usuario.github.io/repositorio/"></label><div class="settings-actions"><button class="primary-btn" id="saveSettings">Salvar configuração</button><button class="ghost-btn" id="clearStorage">Limpar dados locais</button></div><hr><p><strong>Persistência:</strong> playlists, favoritos, recentes, volume e preferências ficam no localStorage deste navegador.</p></div>`); }
+  page(title, body) { this.root.innerHTML = `<div class="page-title"><span class="eyebrow">BIBLIOTECA</span><h1>${this.esc(title)}</h1></div>${body}`; }
+  albumCard(a) { return `<button class="media-card" data-album="${a.id}"><img src="${a.cover}" alt=""><strong>${a.title}</strong><span>${a.artist} · ${a.year}</span></button>`; }
+  trackRow(t, favorites, single=false) { const id=t.id, fav=favorites.includes(id); return `<div class="track-row"><button class="cover-mini play-track" data-track="${id}"><img src="${t.cover || t.albumCover}" alt=""></button><div class="track-main"><strong>${this.esc(t.title)}</strong><span>${this.esc(t.artist || "")}${t.albumTitle ? " · "+this.esc(t.albumTitle) : ""}</span></div><span class="track-duration">${t.duration || ""}</span><button class="icon-btn favorite ${fav?"on":""}" data-favorite="${id}" title="Favorito">${fav?"♥":"♡"}</button><button class="icon-btn more" data-more="${id}" title="Adicionar à playlist">⋯</button></div>`; }
+  esc(s) { return String(s ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c])); }
+}
